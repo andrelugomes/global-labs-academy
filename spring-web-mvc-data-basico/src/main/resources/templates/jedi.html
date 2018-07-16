@@ -31,7 +31,11 @@
 
 <br>
 
-<a href="#" th:href="@{/new-jedi}">New Jedi</a>
+<a href="#" th:href="@{/jedi}">All Jedi</a> | <a href="#" th:href="@{/new-jedi}">New Jedi</a>
+
+<form th:action="@{/search}"  method="get">
+    <input type="text" name="name"/> <button type="submit">Search</button>
+</form>
 
 </body>
 </html>

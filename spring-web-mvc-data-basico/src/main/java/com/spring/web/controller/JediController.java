@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +30,16 @@ public class JediController {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("jedi");
         modelAndView.addObject("allJedi", repository.findAll());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView jediSearch(@RequestParam(value = "name") final String name) {
+
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("jedi");
+        modelAndView.addObject("allJedi", repository.findByNameContainingIgnoreCase(name));
 
         return modelAndView;
     }
