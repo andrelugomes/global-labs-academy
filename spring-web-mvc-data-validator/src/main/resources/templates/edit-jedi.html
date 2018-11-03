@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jedi</title>
+</head>
+<body>
+
+<h1>Edit Jedi</h1>
+
+<form th:action="@{/jedi}" th:object="${jedi}" method="post">
+    <input type="hidden" name="id" th:field="*{id}"/>
+
+    <input type="text" name="name"  th:field="*{name}"  th:placeholder="Name"/> <br/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+    <br/>
+
+    <input type="text" name="lastName" th:field="*{lastName}" th:placeholder="LastName"/> <br/>
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</span>
+    <br/>
+    <button type="submit">Update Jedi</button>
+</form>
+
+<br>
+
+<a th:href="@{/jedi}">Jedi</a>
+
+</body>
+</html>
