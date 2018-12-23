@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jedi</title>
+</head>
+
+<body>
+
+<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+
+<h1>Jedi forces</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>LASTNAME</th>
+    </tr>
+    <tr th:each="jedi : ${allJedi}">
+        <td th:text="${jedi.id}"></td>
+        <td th:text="${jedi.name}"> </td>
+        <td th:text="${jedi.lastName}"> </td>
+        <td>
+            <a th:href="@{/jedi/__${jedi.id}__/delete}" onClick="return confirm('Delete?')">Delete</a>
+            <a th:href="@{/jedi/__${jedi.id}__/update}">Update</a>
+        </td>
+
+    </tr>
+</table>
+
+<br>
+
+<a href="#" th:href="@{/new-jedi}">New Jedi</a> | <a href="#" th:href="@{/jedi}">All Jedi</a>
+
+<form th:action="@{/search}"  method="get">
+    <input type="text" name="name"/> <button type="submit">Search</button>
+</form>
+
+</body>
